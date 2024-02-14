@@ -10,6 +10,7 @@ import QRCodeStyling from 'qr-code-styling'
 import { onMounted, ref, watch } from 'vue'
 
 export interface StyledQRCodeProps {
+  url: string
   data: string
   width?: number
   height?: number

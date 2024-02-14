@@ -16,7 +16,7 @@ import { allPresets } from './utils/presets'
 
 const { t, locale } = useI18n()
 
-const defaultPreset = allPresets[0]
+const defaultPreset = allPresets[1]
 const url = ref()
 const data = ref()
 const image = ref()
