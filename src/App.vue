@@ -134,7 +134,7 @@ async function copyQRToClipboard() {
 }
 
 function downloadQRImageAsPng() {
-  console.debug('Copying image to clipboard')
+  console.debug('Downloading image as png')
   const qrCode = document.querySelector('#qr-code-container')
   if (qrCode) {
     downloadPngElement(qrCode as HTMLElement, 'qr-code.png', options.value)
@@ -142,7 +142,7 @@ function downloadQRImageAsPng() {
 }
 
 function downloadQRImageAsSvg() {
-  console.debug('Copying image to clipboard')
+  console.debug('Downloading image as svg')
   const qrCode = document.querySelector('#qr-code-container')
   if (qrCode) {
     downloadSvgElement(qrCode as HTMLElement, 'qr-code.svg', options.value)
