@@ -24,7 +24,8 @@ const defaultPresetOptions = {
   width: 200,
   height: 200,
   margin: 0,
-  type: 'svg' as DrawType
+  type: 'svg' as DrawType,
+  url: 'https://mini-qr-umber.vercel.app/'
 }
 
 // Company / Tech presets

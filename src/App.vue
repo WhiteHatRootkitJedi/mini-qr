@@ -17,6 +17,7 @@ import { allPresets } from './utils/presets'
 const { t, locale } = useI18n()
 
 const defaultPreset = allPresets[0]
+const url = ref()
 const data = ref()
 const image = ref()
 const width = ref()
@@ -55,6 +56,7 @@ const imageOptions = computed(() => ({
 }))
 
 const qrCodeProps = computed(() => ({
+  url: url.value,
   data: data.value,
   image: image.value,
   width: width.value,
@@ -103,6 +105,7 @@ function randomizeStyleSettings() {
 const selectedPreset = ref(defaultPreset)
 
 watch(selectedPreset, () => {
+  url.value = selectedPreset.value.url
   data.value = selectedPreset.value.data
   image.value = selectedPreset.value.image
   width.value = selectedPreset.value.width
@@ -168,6 +171,10 @@ function uploadImage() {
     }
   }
   imageInput.click()
+}
+
+function getShortLink() {
+  data.value = url.value
 }
 
 /* QR Config Utils */
@@ -502,6 +509,39 @@ onMounted(() => {
                 </svg>
               </button>
             </div>
+          </div>
+          <div class="w-full">
+            <div class="mb-2 flex flex-row items-center gap-2">
+              <label for="url">
+                {{ t('URL to link to') }}
+              </label>
+              <button class="icon-button flex flex-row items-center" @click="getShortLink">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <g
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  >
+                    <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                    <path
+                      d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2zm-5-10v6"
+                    />
+                    <path d="M9.5 13.5L12 11l2.5 2.5" />
+                  </g>
+                </svg>
+                <p>{{ t('Get short link') }}</p>
+              </button>
+            </div>
+            <textarea
+              name="url"
+              class="text-input"
+              id="url"
+              rows="1"
+              :placeholder="t('URL to link to')"
+              v-model="url"
+            />
           </div>
           <div class="w-full">
             <label for="data">

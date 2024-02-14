@@ -40,6 +40,7 @@ const props = withDefaults(defineProps<StyledQRCodeProps>(), {
   width: 200,
   height: 200,
   type: 'svg' as DrawType,
+  url: 'https://mini-qr-umber.vercel.app/',
   image: undefined,
   margin: 0,
   dotsOptions: () => ({
