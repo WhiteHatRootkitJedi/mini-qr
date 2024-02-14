@@ -179,8 +179,27 @@ function setImageToPABLogo() {
   imageMargin.value = -12
 }
 
-function getShortLink() {
-  data.value = url.value
+async function getShortLink() {
+  // We can use the `Headers` constructor to create headers
+  // and assign it as the type of the `headers` variable
+  const headers: Headers = new Headers()
+  // Add a few headers
+  headers.set('Content-Type', 'application/json')
+  headers.set('Accept', 'application/json')
+  // Add a custom header, which we can use to check
+  headers.set('X-Api-Key', 'df82b99c-fce9-4f42-9fd1-1c3105e70bf6')
+
+  const request: RequestInfo = new Request('https://qr.pabibletf.org/rest/v3/short-urls', {
+    method: 'POST',
+    headers: headers,
+    body: '{"longUrl": "' + url.value + '", "findIfExists": true}'
+  })
+
+  fetch(request)
+    .then(res => res.json())
+    .then(res => {
+      data.value = res["shortUrl"] as String
+    })
 }
 
 /* QR Config Utils */
